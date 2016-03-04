@@ -7,10 +7,10 @@ RUN mkdir /myapp
 #RUN groupadd docker && useradd -g docker docker
 #USER docker
 
+## Cache Gems
 WORKDIR /tmp
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
-#RUN bundle config --global silence_root_warning 1
 RUN bundle install
 
 ADD . /myapp

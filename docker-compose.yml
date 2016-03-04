@@ -8,10 +8,10 @@ web:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_ne: sys=lb
   links:
-    - db
+    - mysql
   env_file:
     - '.env.web'
-db:
+mysql:
   image: library/mysql:5.6.22
   ports:
     - "13306:3306"
@@ -26,12 +26,37 @@ phpmyadmin:
   environment:
     PMA_HOST: mysql
     PMA_USER: root
-    PMA_PASSWORD: test
+    PMA_PASSWORD: ""
   labels:
     io.rancher.container.pull_image: always
     io.rancher.scheduler.affinity:host_label_ne: sys=lb
   tty: true
   image: phpmyadmin/phpmyadmin:4.5.3.1-1
+  ports:
+    - "8080:8080"
   links:
-  - 'db:'
+  - 'mysql:mysql'
   stdin_open: true
+elasticsearch:
+  image: library/elasticsearch:2.2
+  ports:
+    - "9200:9200"
+  labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_ne: sys=lb
+mariadb:
+  image: library/mariadb:latest
+  ports:
+    - "23306:3306"
+  env_file:
+    - '.env.db'
+  labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_ne: sys=lb
+memcached:
+  image: library/memcached:latest
+  ports:
+    - "11211:11211"
+  labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_ne: sys=lb

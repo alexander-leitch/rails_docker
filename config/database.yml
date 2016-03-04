@@ -6,12 +6,18 @@
 #
 default: &default
   adapter: mysql2
-  host: db
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
+  host: db
+  database: rails_docker
+
+local:
+  <<: *default
+  host: 127.0.0.1
+  username: root
   database: rails_docker
 
 # Warning: The database defined as "test" will be erased and
@@ -23,4 +29,5 @@ test:
 
 production:
   <<: *default
+  host: db
   database: production_rails_docker

@@ -1,6 +1,12 @@
 web:
-  scale: 1
+  scale: 2
 db:
   scale: 1
 phpmyadmin:
+  scale: 1
+elasticsearch:
+  scale: 1
+mariadb:
+  scale: 1
+memcached:
   scale: 1
