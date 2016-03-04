@@ -1,0 +1,6 @@
+web:
+  scale: 1
+db:
+  scale: 1
+phpmyadmin:
+  scale: 1

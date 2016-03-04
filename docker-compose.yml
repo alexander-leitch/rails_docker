@@ -4,6 +4,9 @@ web:
     - .:/myapp
   ports:
     - "3000:3000"
+  labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_ne: sys=lb
   links:
     - db
   env_file:
@@ -14,3 +17,21 @@ db:
     - "13306:3306"
   env_file:
     - '.env.db'
+  labels:
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_ne: sys=lb
+#  volumes:
+#    - /mnt/swipe-rails:/var/lib/mysql
+phpmyadmin:
+  environment:
+    PMA_HOST: mysql
+    PMA_USER: root
+    PMA_PASSWORD: test
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label_ne: sys=lb
+  tty: true
+  image: phpmyadmin/phpmyadmin:4.5.3.1-1
+  links:
+  - 'db:'
+  stdin_open: true

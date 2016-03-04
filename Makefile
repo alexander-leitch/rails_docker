@@ -1,4 +1,4 @@
-DOCKER_IMAGE_NAME := wechatbuilder
+DOCKER_IMAGE_NAME := railsdocker
 
 build: Dockerfile
 	docker build --file Dockerfile --tag $(DOCKER_IMAGE_NAME) .

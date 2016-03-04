@@ -10,6 +10,7 @@ RUN mkdir /myapp
 WORKDIR /tmp
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
+#RUN bundle config --global silence_root_warning 1
 RUN bundle install
 
 ADD . /myapp
