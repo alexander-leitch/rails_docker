@@ -11,7 +11,8 @@ default: &default
 
 development:
   <<: *default
-  host: db
+  host: mysql
+  password: 'Testing'
   database: rails_docker
 
 local:
@@ -29,5 +30,6 @@ test:
 
 production:
   <<: *default
-  host: db
+  host: mysql
+  password: 'Testing'
   database: production_rails_docker
