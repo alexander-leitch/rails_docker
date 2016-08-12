@@ -13,6 +13,9 @@ COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
+EXPOSE 3000
+ENV SECRET_KEY_BASE=c47d187067c6cf953245f128b5fde62ac47d187067c6cf953245f128b5fde62a
+
 ADD . /myapp
 WORKDIR /myapp
 RUN RAILS_ENV=production bundle exec rake assets:precompile --trace
