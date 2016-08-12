@@ -1,11 +1,17 @@
-development:
+development:  &default
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: <%= ENV['DB_DATABASE'] %>
   url: <%= ENV['DATABASE_URL'].gsub('?', '_development?') %>
 
 test:
+  <<: *default
   url: <%= ENV['DATABASE_URL'].gsub('?', '_test?') %>
 
 staging:
+  <<: *default
   url: <%= ENV['DATABASE_URL'].gsub('?', '_staging?') %>
 
 production:
+  <<: *default
   url: <%= ENV['DATABASE_URL'].gsub('?', '_production?') %>
